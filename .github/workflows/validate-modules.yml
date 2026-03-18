@@ -1,4 +1,4 @@
-name: Validate Extension Metadata
+name: Validate Module Metadata
 
 on:
   push:
@@ -25,14 +25,14 @@ jobs:
           import sys
 
           errors = []
-          # Path to your extensions folder
-          extensions_path = 'extensions'
+          # Path to your modules folder
+          modules_path = 'modules'
 
-          if not os.path.exists(extensions_path):
-              print(f"Directory {extensions_path} not found.")
+          if not os.path.exists(modules_path):
+              print(f"Directory {modules_path} not found.")
               sys.exit(0)
 
-          for root, dirs, files in os.walk(extensions_path):
+          for root, dirs, files in os.walk(modules_path):
               for file in files:
                   if file == 'metadata.json':
                       file_path = os.path.join(root, file)

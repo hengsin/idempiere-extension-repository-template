@@ -5,12 +5,14 @@
 ```Text
 com.example.plugin.name/   
 ├── info.md
+└── assets/
 └── 1.0.0/
     ├── core-logic-1.0.0.jar
     └── metadata.json
 ```
 - Root is module name
 - info.md: Human-readable description
+- assets: Static assets (image, csv, etc)
 - 1.0.0: Version-specific folder
 - metadata.json: Technical metadata & bundle links
 
@@ -124,7 +126,7 @@ After installation, navigate to **System Admin > Tenant > Report PDF Configurati
         "properties": {
           "symbolicName": { "type": "string" },
           "downloadUrl": { "type": "string", "format": "uri" },
-          "md5": { "type": "string" }
+          "sha256": { "type": "string" }
         }
       }
     },
@@ -159,7 +161,7 @@ After installation, navigate to **System Admin > Tenant > Report PDF Configurati
     {
       "symbolicName": "com.example.plugin.core",
       "downloadUrl": "https://github.com/user/repo/releases/download/v1.0.0/com.example.plugin.core_1.0.0.jar",
-      "md5": "optional-hash-for-verification"
+      "sha256": "optional-hash-for-verification"
     },
     {
       "symbolicName": "com.example.plugin.ui",

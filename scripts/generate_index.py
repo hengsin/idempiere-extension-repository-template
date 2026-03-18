@@ -1,17 +1,25 @@
 import json
 import os
+import datetime
 from packaging import version
 
 def generate_index():
     modules_dir = 'modules'
+    
+    # Generate dynamic UTC ISO timestamp
+    now_utc = datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00', 'Z')
+    
     index_data = {
-        "generatedAt": "2026-03-11T00:00:00Z", # You can use datetime.now().isoformat()
+        "generatedAt": now_utc,
         "modules": []
     }
 
     if not os.path.exists(modules_dir):
         print("Modules directory not found.")
         return
+
+    # Use environment variable for repository URL
+    repo_url = os.environ.get("REPO_URL", "https://github.com/YOUR_ORG/YOUR_REPO")
 
     for module_id in os.listdir(modules_dir):
         module_path = os.path.join(modules_dir, module_id)
@@ -32,18 +40,20 @@ def generate_index():
                 except Exception as e:
                     print(f"Error reading {metadata_file}: {e}")
 
-        if versions:
+        # Filter out metadata without a version key to avoid KeyError
+        valid_versions = [v for v in versions if isinstance(v, dict) and 'version' in v]
+
+        if valid_versions:
             # Sort versions using packaging.version to get the latest release
-            # Requires: pip install packaging
-            versions.sort(key=lambda x: version.parse(x['version']), reverse=True)
+            valid_versions.sort(key=lambda x: version.parse(x['version']), reverse=True)
             
             # Add the latest version to the index
-            latest = versions[0]
+            latest = valid_versions[0]
             
             # Optional: Add link to the human-readable description
             info_md = os.path.join(module_path, 'info.md')
             if os.path.exists(info_md):
-                latest['infoUrl'] = f"https://github.com/YOUR_ORG/YOUR_REPO/blob/main/modules/{module_id}/info.md"
+                latest['infoUrl'] = f"{repo_url}/blob/main/{module_path}/info.md"
 
             index_data['modules'].append(latest)
 

@@ -48,7 +48,7 @@
         "properties": {
           "symbolicName": { "type": "string" },
           "downloadUrl": { "type": "string", "format": "uri" },
-          "md5": { "type": "string" }
+          "sha256": { "type": "string" }
         }
       }
     },
