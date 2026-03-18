@@ -17,7 +17,7 @@ To install a module from this repository:
 The repository is organized to support multiple versions of the same module:
 ```text
 modules/
-└── <plugin.symbolic.name>/
+└── <module.symbolic.name>/
     ├── info.md             # Documentation and Screenshots
     └── <version>/          # e.g., 1.0.0
         └── metadata.json   # Links to JARs and dependencies
