@@ -18,8 +18,8 @@ def generate_index():
         print("Modules directory not found.")
         return
 
-    # Use environment variable for repository URL
-    repo_url = os.environ.get("REPO_URL", "https://github.com/YOUR_ORG/YOUR_REPO")
+    # Replace YOUR_ORG/YOUR_REPO with values of your repository
+    repo_url = "https://github.com/YOUR_ORG/YOUR_REPO"
 
     for module_id in os.listdir(modules_dir):
         module_path = os.path.join(modules_dir, module_id)
