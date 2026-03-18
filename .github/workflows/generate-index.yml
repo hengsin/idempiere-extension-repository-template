@@ -1,0 +1,33 @@
+name: Generate Extensions Index
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'extensions/**'
+
+jobs:
+  build-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install packaging
+
+      - name: Run Indexer
+        run: python scripts/generate_index.py
+
+      - name: Commit and Push Index
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.json
+          git commit -m "docs: update extensions index [skip ci]" || echo "No changes to commit"
+          git push
