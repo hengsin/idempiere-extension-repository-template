@@ -4,32 +4,32 @@ import datetime
 from packaging import version
 
 def generate_index():
-    modules_dir = 'modules'
+    extensions_dir = 'extensions'
     
     # Generate dynamic UTC ISO timestamp
     now_utc = datetime.datetime.now(datetime.timezone.utc).isoformat().replace('+00:00', 'Z')
     
     index_data = {
         "generatedAt": now_utc,
-        "modules": []
+        "extensions": []
     }
 
-    if not os.path.exists(modules_dir):
-        print("Modules directory not found.")
+    if not os.path.exists(extensions_dir):
+        print("Extensions directory not found.")
         return
 
     # Replace YOUR_ORG/YOUR_REPO with values of your repository
     repo_url = "https://github.com/YOUR_ORG/YOUR_REPO"
 
-    for module_id in os.listdir(modules_dir):
-        module_path = os.path.join(modules_dir, module_id)
-        if not os.path.isdir(module_path):
+    for extension_id in os.listdir(extensions_dir):
+        extension_path = os.path.join(extensions_dir, extension_id)
+        if not os.path.isdir(extension_path):
             continue
 
         versions = []
         # Find all version folders
-        for v_dir in os.listdir(module_path):
-            v_path = os.path.join(module_path, v_dir)
+        for v_dir in os.listdir(extension_path):
+            v_path = os.path.join(extension_path, v_dir)
             metadata_file = os.path.join(v_path, 'metadata.json')
             
             if os.path.isdir(v_path) and os.path.exists(metadata_file):
@@ -51,11 +51,11 @@ def generate_index():
             latest = valid_versions[0]
             
             # Optional: Add link to the human-readable description
-            info_md = os.path.join(module_path, 'info.md')
+            info_md = os.path.join(extension_path, 'info.md')
             if os.path.exists(info_md):
-                latest['infoUrl'] = f"{repo_url}/blob/main/{module_path}/info.md"
+                latest['infoUrl'] = f"{repo_url}/blob/main/{extension_path}/info.md"
 
-            index_data['modules'].append(latest)
+            index_data['extensions'].append(latest)
 
     with open('index.json', 'w') as f:
         json.dump(index_data, f, indent=2)

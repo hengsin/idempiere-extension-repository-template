@@ -1,10 +1,10 @@
-name: Generate Module Index
+name: Generate Extension Index
 
 on:
   push:
     branches: [ main ]
     paths:
-      - 'modules/**'
+      - 'extensions/**'
 
 jobs:
   build-index:

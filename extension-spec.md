@@ -1,4 +1,4 @@
-# iDempiere Module
+# iDempiere Extension
 
 ## Folder Structure
 
@@ -10,13 +10,13 @@ com.example.plugin.name/
     ├── core-logic-1.0.0.jar
     └── metadata.json
 ```
-- Root is module name
+- Root is extension name
 - info.md: Human-readable description
 - assets: Static assets (image, csv, etc)
 - 1.0.0: Version-specific folder
 - metadata.json: Technical metadata & bundle links
 
-## Module Info
+## Extension Info
 
 ### info. md
 - Should have the following sections:
@@ -49,7 +49,7 @@ com.example.plugin.name/
 
 ## 📦 Database Changes
 
-* **System PackIn:** This module will install a system tenant `PackIn` for new Window and Field configurations.
+* **System PackIn:** This extension will install a system tenant `PackIn` for new Window and Field configurations.
 * **Tenant PackIn:** Download from {url of 2pack} and install into the destination tenant
 * **Tenant CSV Import:** Download from {url of csv file} and install into the destination tenant
 
@@ -78,13 +78,13 @@ After installation, navigate to **System Admin > Tenant > Report PDF Configurati
 ```json
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "iDempiere Module Metadata",
+  "title": "iDempiere Extension Metadata",
   "type": "object",
   "required": ["id", "version", "idempiereVersion", "bundles", "entityType"],
   "properties": {
     "id": {
       "type": "string",
-      "description": "The unique identifier for the module (usually the symbolic name)."
+      "description": "The unique identifier for the extension (usually the symbolic name)."
     },
     "version": {
       "type": "string",
@@ -115,7 +115,7 @@ After installation, navigate to **System Admin > Tenant > Report PDF Configurati
     },
     "entityType": {
       "type": "string",
-      "description": "Identifies the type of entity, often matching the ID or a specific module class."
+      "description": "Identifies the type of entity, often matching the ID or a specific extension class."
     },
     "bundles": {
       "type": "array",
@@ -149,14 +149,14 @@ After installation, navigate to **System Admin > Tenant > Report PDF Configurati
 ### Example metadata
 ```
 {
-  "id": "com.example.module.name",
+  "id": "com.example.extension.name",
   "version": "1.0.0",
   "idempiereVersion": "11",
   "releaseDate": "2026-03-11",
   "description": "Short description of this specific version.",
   "categories": [“category1”, “category2”],
   "tags": [“tag1”, “tag2”],
-  "entityType": "com.example.module.name"
+  "entityType": "com.example.extension.name"
   "bundles": [
     {
       "symbolicName": "com.example.plugin.core",

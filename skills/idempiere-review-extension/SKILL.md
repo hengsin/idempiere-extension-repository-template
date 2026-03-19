@@ -1,19 +1,19 @@
 ---
-name: idempiere-review-module
-description: Reviews an iDempiere module folder for info.md, metadata.json formatting and content, and verifies 2Pack archives in downloaded jar files.
+name: idempiere-review-extension
+description: Reviews an iDempiere extension folder for info.md, metadata.json formatting and content, and verifies 2Pack archives in downloaded jar files.
 ---
 
-# iDempiere Module Review
+# iDempiere Extension Review
 
-This skill guides you through reviewing an iDempiere module folder to ensure it complies with the standard module specification.
+This skill guides you through reviewing an iDempiere extension folder to ensure it complies with the standard extension specification.
 
 ## Prerequisites
-- A module folder containing `info.md` and a version-specific sub-directory with `metadata.json`.
+- A extension folder containing `info.md` and a version-specific sub-directory with `metadata.json`.
 
 ## Review Steps
 
 ### 1. `info.md` Review
-- **Formatting and Sections**: Verify that `info.md` strictly contains the following sections as outlined in the module specification:
+- **Formatting and Sections**: Verify that `info.md` strictly contains the following sections as outlined in the extension specification:
   - Summary
   - Features
   - Compatibility
@@ -36,13 +36,13 @@ For each bundle listed in the `bundles` array of `metadata.json`, perform the fo
 2. **Extract Jar**: Unzip the jar file to inspect its contents, specifically the `META-INF` folder.
 3. **Verify 2Pack Archives**:
    - Check the 2Pack files located inside the `META-INF` folder.
-   - **Naming Convention**: Verify that the 2Pack archive follows the exact naming convention: `2Pack_{$version}` (where `{$version}` matches the module version in `metadata.json`).
+   - **Naming Convention**: Verify that the 2Pack archive follows the exact naming convention: `2Pack_{$version}` (where `{$version}` matches the extension version in `metadata.json`).
    - **Entity Type**: Verify that the 2Pack `entityType` matches the `entityType` specified in `metadata.json`.
    - **Grammar & Semantics**: Review the contents of the 2Pack XML file(s) to verify any grammar, wording, and semantic issues in the XML data.
    - **Tenant Check**: Verify that the 2Pack is created for System tenant.
 4. **Collect SQL Statements**:
    - Scan the 2Pack XML files for any SQL statements.
-   - If any SQL statements exist, collect all of them into a file named `ModuleSQLStatements.sql` in the root of the module folder.
+   - If any SQL statements exist, collect all of them into a file named `ExtensionSQLStatements.sql` in the root of the extension folder.
    - For each extracted SQL statement, the format MUST be exactly:
      ```
      {source 2pack file}/{line no}:
