@@ -22,6 +22,9 @@
       "format": "date",
       "description": "The date of the release in YYYY-MM-DD format."
     },
+    "name": {
+      "type": "string"
+    },
     "description": {
       "type": "string"
     },

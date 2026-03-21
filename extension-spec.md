@@ -100,6 +100,9 @@ After installation, navigate to **System Admin > Tenant > Report PDF Configurati
       "format": "date",
       "description": "The date of the release in YYYY-MM-DD format."
     },
+    "name": {
+      "type": "string"
+    },
     "description": {
       "type": "string"
     },
@@ -153,6 +156,7 @@ After installation, navigate to **System Admin > Tenant > Report PDF Configurati
   "version": "1.0.0",
   "idempiereVersion": "11",
   "releaseDate": "2026-03-11",
+  "name": "Extension Name",
   "description": "Short description of this specific version.",
   "categories": [“category1”, “category2”],
   "tags": [“tag1”, “tag2”],
