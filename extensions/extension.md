@@ -3,6 +3,7 @@
 ```Text
 com.example.extension.name/   
 ├── info.md
+├── CHANGELOG.md
 └── assets/
 └── 1.0.0/
     ├── core-logic-1.0.0.jar

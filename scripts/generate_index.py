@@ -55,6 +55,11 @@ def generate_index():
             if os.path.exists(info_md):
                 latest['infoUrl'] = f"{repo_url}/blob/main/{extension_path}/info.md"
 
+            # Optional: Add link to the changelog
+            changelog_md = os.path.join(extension_path, 'CHANGELOG.md')
+            if os.path.exists(changelog_md):
+                latest['changeLogUrl'] = f"{repo_url}/blob/main/{extension_path}/CHANGELOG.md"
+
             index_data['extensions'].append(latest)
 
     with open('index.json', 'w') as f:

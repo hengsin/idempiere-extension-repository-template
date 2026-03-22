@@ -5,6 +5,7 @@
 ```Text
 com.example.plugin.name/   
 ├── info.md
+├── CHANGELOG.md
 └── assets/
 └── 1.0.0/
     ├── core-logic-1.0.0.jar
@@ -12,6 +13,7 @@ com.example.plugin.name/
 ```
 - Root is extension name
 - info.md: Human-readable description
+- CHANGELOG.md: Optional change log. Recommended to follow the https://keepachangelog.com/en/1.0.0/ format.
 - assets: Static assets (image, csv, etc)
 - 1.0.0: Version-specific folder
 - metadata.json: Technical metadata & bundle links
