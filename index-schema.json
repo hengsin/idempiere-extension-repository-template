@@ -31,6 +31,17 @@
                 "type": "string",
                 "format": "uri",
                 "description": "URL to the changelog (CHANGELOG.md)."
+              },
+              "assets": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["name", "url"],
+                  "properties": {
+                    "name": { "type": "string" },
+                    "url": { "type": "string", "format": "uri" }
+                  }
+                }
               }
             }
           }

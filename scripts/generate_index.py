@@ -60,6 +60,18 @@ def generate_index():
             if os.path.exists(changelog_md):
                 latest['changeLogUrl'] = f"{repo_url}/blob/main/{extension_path}/CHANGELOG.md"
 
+            # Optional: Add links to assets
+            assets_dir = os.path.join(extension_path, 'assets')
+            if os.path.exists(assets_dir) and os.path.isdir(assets_dir):
+                latest['assets'] = []
+                for asset_file in os.listdir(assets_dir):
+                    asset_path = os.path.join(assets_dir, asset_file)
+                    if os.path.isfile(asset_path):
+                        latest['assets'].append({
+                            "name": asset_file,
+                            "url": f"{repo_url}/blob/main/{asset_path}"
+                        })
+
             index_data['extensions'].append(latest)
 
     with open('index.json', 'w') as f:
