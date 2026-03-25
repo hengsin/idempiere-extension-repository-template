@@ -65,6 +65,23 @@
           "version": { "type": "string" }
         }
       }
+    },
+    "database": {
+       "type": "array",
+       "items": {
+         "type": "object",
+         "required": ["id"],
+         "properties": {
+           "id": { "type": "string" },
+           "version": { "type": "string" },
+           "extensions": {
+              "type": "array",
+              "items": {
+	         "type": "string"
+              }
+           }
+         } 
+       }
     }
   }
 }
