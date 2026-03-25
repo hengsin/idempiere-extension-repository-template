@@ -42,3 +42,7 @@ If you are building an extension manager for iDempiere, you can point your clien
 `https://raw.githubusercontent.com/<YOUR_ORG>/<YOUR_REPO>/main/index.json`
 This file is automatically updated every time a new extension is merged.
 
+## Create new repository from this template
+1. Click the **Use this template** drop down menu, select **Create a new repository**
+2. Edit README.md and scripts/generate_index.py
+   - Replace **<YOUR_ORG>/<YOUR_REPO>** with values of your repository
