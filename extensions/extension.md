@@ -6,11 +6,11 @@ com.example.extension.name/
 ├── CHANGELOG.md
 └── assets/
 └── 1.0.0/
-    ├── core-logic-1.0.0.jar
     └── metadata.json
 ```
 - Root is extension name
 - info.md: Human-readable description
+- CHANGELOG.md: Change log
 - assets: Static assets (image, csv, etc)
 - 1.0.0: Version-specific folder
 - metadata.json: Technical metadata & bundle links

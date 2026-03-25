@@ -10,7 +10,7 @@ You can explore extensions in two ways:
 
 ### 2. Installation
 To install an extension from this repository:
-1.  Use the Extension Management form in iDempiere Web Client to locate the extension and the specific version compatible with your iDempiere instance.
+1. Use the Extension Management form in iDempiere Web Client to locate the extension and the specific version compatible with your iDempiere instance.
 2. Click the install button in Extension Management form  to install the selected extension.
 ---
 ## 🛠 Repository Structure
@@ -19,6 +19,8 @@ The repository is organized to support multiple versions of the same extension:
 extensions/
 └── <extension.symbolic.name>/
     ├── info.md             # Documentation and Screenshots
+    ├── CHANGELOG.md        # Change log
+    ├── assets/             # Static assets
     └── <version>/          # e.g., 1.0.0
         └── metadata.json   # Links to JARs and dependencies
 ```
