@@ -15,37 +15,92 @@
     "extensions": {
       "type": "array",
       "items": {
-        "allOf": [
-          {
-            "$ref": "metadata-schema.json"
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "versions"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier for the extension (usually the symbolic name)."
           },
-          {
-            "type": "object",
-            "properties": {
-              "infoUrl": {
-                "type": "string",
-                "format": "uri",
-                "description": "URL to the human-readable description (info.md)."
-              },
-              "changeLogUrl": {
-                "type": "string",
-                "format": "uri",
-                "description": "URL to the changelog (CHANGELOG.md)."
-              },
-              "assets": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "required": ["name", "url"],
-                  "properties": {
-                    "name": { "type": "string" },
-                    "url": { "type": "string", "format": "uri" }
-                  }
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "entityType": {
+            "type": "string",
+            "description": "Identifies the type of entity, often matching the ID or a specific extension class."
+          },
+          "versions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "version",
+                "metadataUrl"
+              ],
+              "properties": {
+                "version": {
+                  "type": "string",
+                  "description": "Semantic versioning string (e.g., 1.0.0)."
+                },
+                "metadataUrl": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "URL to the metadata.json for this version."
+                }
+              }
+            }
+          },
+          "infoUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the human-readable description (info.md)."
+          },
+          "changeLogUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the changelog (CHANGELOG.md)."
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "url"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri"
                 }
               }
             }
           }
-        ]
+        }
       }
     }
   }

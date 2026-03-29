@@ -1,6 +1,7 @@
 import json
 import os
 import datetime
+import sys
 from packaging import version
 
 def generate_index():
@@ -18,8 +19,9 @@ def generate_index():
         print("Extensions directory not found.")
         return
 
-    # Replace YOUR_ORG/YOUR_REPO with values of your repository
-    repo_url = "https://github.com/YOUR_ORG/YOUR_REPO"
+    # Retrieve repository info from argument or environment
+    repo_full_name = sys.argv[1] if len(sys.argv) > 1 else os.environ.get('GITHUB_REPOSITORY', 'YOUR_ORG/YOUR_REPO')
+    repo_url = f"https://github.com/{repo_full_name}"
 
     for extension_id in os.listdir(extensions_dir):
         extension_path = os.path.join(extensions_dir, extension_id)
@@ -47,32 +49,51 @@ def generate_index():
             # Sort versions using packaging.version to get the latest release
             valid_versions.sort(key=lambda x: version.parse(x['version']), reverse=True)
             
-            # Add the latest version to the index
+            # Use the latest version for basic top-level metadata
             latest = valid_versions[0]
             
+            extension_entry = {
+                "id": latest.get("id"),
+                "name": latest.get("name"),
+                "description": latest.get("description"),
+                "categories": latest.get("categories", []),
+                "tags": latest.get("tags", []),
+                "entityType": latest.get("entityType"),
+                "versions": []
+            }
+            
+            # Collect all versions
+            for v in valid_versions:
+                v_str = v['version']
+                extension_entry['versions'].append({
+                    "version": v_str,
+                    "metadataUrl": f"{repo_url}/blob/main/{extensions_dir}/{extension_id}/{v_str}/metadata.json"
+                })
+
             # Optional: Add link to the human-readable description
             info_md = os.path.join(extension_path, 'info.md')
             if os.path.exists(info_md):
-                latest['infoUrl'] = f"{repo_url}/blob/main/{extension_path}/info.md"
+                extension_entry['infoUrl'] = f"{repo_url}/blob/main/{extension_path}/info.md"
 
             # Optional: Add link to the changelog
             changelog_md = os.path.join(extension_path, 'CHANGELOG.md')
             if os.path.exists(changelog_md):
-                latest['changeLogUrl'] = f"{repo_url}/blob/main/{extension_path}/CHANGELOG.md"
+                extension_entry['changeLogUrl'] = f"{repo_url}/blob/main/{extension_path}/CHANGELOG.md"
 
             # Optional: Add links to assets
             assets_dir = os.path.join(extension_path, 'assets')
             if os.path.exists(assets_dir) and os.path.isdir(assets_dir):
-                latest['assets'] = []
+                extension_entry['assets'] = []
                 for asset_file in os.listdir(assets_dir):
                     asset_path = os.path.join(assets_dir, asset_file)
                     if os.path.isfile(asset_path):
-                        latest['assets'].append({
+                        extension_entry['assets'].append({
                             "name": asset_file,
                             "url": f"{repo_url}/blob/main/{asset_path}"
                         })
 
-            index_data['extensions'].append(latest)
+            index_data['extensions'].append(extension_entry)
+
 
     with open('index.json', 'w') as f:
         json.dump(index_data, f, indent=2)

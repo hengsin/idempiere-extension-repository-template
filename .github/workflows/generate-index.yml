@@ -25,7 +25,7 @@ jobs:
         run: pip install packaging
 
       - name: Run Indexer
-        run: python scripts/generate_index.py
+        run: python scripts/generate_index.py ${{ github.repository }}
 
       - name: Commit and Push Index
         run: |
