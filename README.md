@@ -44,5 +44,5 @@ This file is automatically updated every time a new extension is merged.
 
 ## Create new repository from this template
 1. Click the **Use this template** drop down menu, select **Create a new repository**
-2. Edit README.md and scripts/generate_index.py
+2. Edit README.md
    - Replace **<YOUR_ORG>/<YOUR_REPO>** with values of your repository
