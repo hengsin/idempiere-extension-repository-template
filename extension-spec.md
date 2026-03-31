@@ -90,7 +90,7 @@ After installation, navigate to **System Admin > Tenant > Report PDF Configurati
 - The extensions validation is only implemented for PostgreSQL. It is a availability check and it is the responsibility of the extension to ensure the required extension is installed.
 
 ### Example metadata
-```
+```json
 {
   "id": "com.example.extension.name",
   "version": "1.0.0",
