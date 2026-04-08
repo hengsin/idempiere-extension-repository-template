@@ -86,8 +86,8 @@ After installation, navigate to **System Admin > Tenant > Report PDF Configurati
 
 ### Database Requirement Validation
 - The database property is optional.
-- When use, the extension metadata must explicitly list all database type that's compatible with this extension.
-- The extensions validation is only implemented for PostgreSQL. It is a availability check and it is the responsibility of the extension to ensure the required extension is installed.
+- When use, the extension metadata must explicitly list all database type (`postgresql`, `oracle`) that's compatible with the extension.
+- The `database > extensions` validation is only implemented for PostgreSQL. It is an availability check and it is the responsibility of the extension to ensure the required database extension is installed.
 
 ### Example metadata
 ```json
@@ -98,8 +98,8 @@ After installation, navigate to **System Admin > Tenant > Report PDF Configurati
   "releaseDate": "2026-03-11",
   "name": "Extension Name",
   "description": "Short description of this specific version.",
-  "categories": [“category1”, “category2”],
-  "tags": [“tag1”, “tag2”],
+  "categories": ["category1", "category2"],
+  "tags": ["tag1", "tag2"],
   "entityType": "com.example.extension.name",
   "bundles": [
     {
